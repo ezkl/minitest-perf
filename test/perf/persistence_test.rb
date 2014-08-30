@@ -1,13 +1,13 @@
 require 'test_helper'
 require 'sqlite3'
 
-module MiniTest::Perf
-  class PersistenceTest < MiniTest::Unit::TestCase
+module Minitest::Perf
+  class PersistenceTest < Minitest::Test
     TEST_DB_FILE = '.minitest-perf-tests.db'
     def setup
       File.delete(TEST_DB_FILE) rescue Errno::ENOENT # First time won't be here
       @persistence = Persistence.new("sqlite3://localhost/#{TEST_DB_FILE}")
-      @persistence.sql "delete from tests"
+      @persistence.sql 'delete from tests'
     end
 
     def test_exposes_a_sql_interface
@@ -22,7 +22,7 @@ module MiniTest::Perf
     def test_stores_the_test_as_a_new_row
       @persistence.write(Test.new('run', 'suite', 'name', 10))
 
-      result = @persistence.sql "SELECT * FROM tests"
+      result = @persistence.sql 'SELECT * FROM tests'
 
       assert_equal 1, result.size
 

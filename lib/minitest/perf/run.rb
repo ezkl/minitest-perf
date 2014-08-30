@@ -1,4 +1,4 @@
-module MiniTest
+module Minitest
   module Perf
     class Run
       attr_reader :tests
@@ -8,7 +8,7 @@ module MiniTest
         @started_at  = started_at
       end
 
-      def start(suite, name, now = Time.now)
+      def start(_suite, _name, now = Time.now)
         @test_start = now
       end
 

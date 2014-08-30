@@ -1,6 +1,6 @@
 require 'sqlite3'
 
-module MiniTest
+module Minitest
   module Perf
     class Persistence
       attr_reader :database_url
@@ -17,7 +17,7 @@ module MiniTest
       end
 
       def read_tests
-        db.execute("SELECT * FROM TESTS").map do |run, suite, name, total|
+        db.execute('SELECT * FROM TESTS').map do |run, suite, name, total|
           Test.new(run, suite, name, total)
         end
       end

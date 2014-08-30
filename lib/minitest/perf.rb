@@ -1,7 +1,7 @@
 require 'minitest/perf/version'
-require 'minitest/unit'
+require 'minitest/autorun'
 
-module MiniTest::Perf
+module Minitest::Perf
   autoload :Run,    'minitest/perf/run'
   autoload :Test,   'minitest/perf/test'
   autoload :Suite,  'minitest/perf/suite'
@@ -15,17 +15,17 @@ module MiniTest::Perf
     attr_writer :persistence
 
     def database_url
-      @database_url ||= ENV["MINITEST_PERF_DATABASE_URL"] ||
-                        ENV["DATABASE_URL"] ||
+      @database_url ||= ENV['MINITEST_PERF_DATABASE_URL'] ||
+                        ENV['DATABASE_URL'] ||
                         'sqlite3://localhost/.minitest-perf.db'
     end
+
     def persistence
       @persistence ||= Persistence.new(database_url)
     end
-
   end
 end
 
-class MiniTest::Unit::TestCase
-  include MiniTest::Perf::Plugin
+class Minitest::Test
+  include Minitest::Perf::Plugin
 end

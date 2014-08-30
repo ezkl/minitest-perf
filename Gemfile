@@ -4,6 +4,5 @@ source 'https://rubygems.org'
 gemspec
 
 
-gem "debugger", platforms: :mri
 gem "coveralls", require: false
 gem "simplecov", require: false
